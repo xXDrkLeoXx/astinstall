@@ -2,6 +2,12 @@
 
 path=/usr/local/src
 
+if [ $1 -ne "" ]; then
+  core=$1
+else
+  core=2
+fi
+
 if [[ $EUID -ne 0 ]]; then
   echo "Please enter the root password"
   exec sudo /usr/bin/bash "$0" "$@"
@@ -29,6 +35,6 @@ cd $path/asterisk-*/
 wget https://gist.githubusercontent.com/xXDrkLeoXx/c7d1fb7715d873879f8217b13a6c54b1/raw/ed26185e518d6064453ed025bd310583615f41a8/menuselect-tree
 wget https://gist.githubusercontent.com/xXDrkLeoXx/c7d1fb7715d873879f8217b13a6c54b1/raw/ed26185e518d6064453ed025bd310583615f41a8/menuselect.makeopts
 wget https://gist.githubusercontent.com/xXDrkLeoXx/c7d1fb7715d873879f8217b13a6c54b1/raw/ed26185e518d6064453ed025bd310583615f41a8/menuselect.makedeps
-make -j
+make -j $core
 make install
 
