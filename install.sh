@@ -9,9 +9,8 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 if [ $(dpkg-query -W -f='${Status}' build-essential 2>/dev/null | grep -c "ok installed") -eq 0 ]; then
-	echo "Installer les outils pour compiler avec la commande 'sudo apt install build-essential'"
-	# apt install build-essential
-	exit 1
+	echo "Installation des outils pour compiler"
+	apt install build-essential
 fi
 
 if [[ -f "$path/asterisk.tar.gz" ]]; then
